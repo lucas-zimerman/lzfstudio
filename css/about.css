@@ -1,0 +1,45 @@
+.inline-block {
+    display: inline-block;
+}
+
+p {
+    font-size: 1.2em; /* Adjust the font size as needed */
+}
+
+@keyframes fly {
+    0% {
+        transform: translateX(100vw) rotate(225deg);
+        opacity: 1;
+    }
+    15% {
+        opacity: 1;
+    }
+    20% {
+        transform: translateX(-70vw) rotate(225deg);
+        opacity: 0;
+    }
+    40% {
+        transform: translateX(-100vw) rotate(40deg);
+        opacity: 1;
+    }
+    55% {
+        opacity: 1;
+    }
+    60% {
+        transform: translateX(70vw) rotate(40deg);
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.rocket-svg {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 80vh;
+    bottom: 0;
+    transform: translateY(-50%);
+    animation: fly 16s linear infinite;
+}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio</title>
+<style>
+    body {
+        background-color: #333333; /* Deep charcoal color */
+        color: #ffffff; /* White text for contrast */
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    hr {
+        border-color: red; /* Red color for the horizontal line */
+    }
+    .info-header {
+        position: fixed; /* Fix the position */
+        top: 0; /* Position at the top of the viewport */
+        left: 0;
+        right: 0;
+        background-color: #333333; /* Background color for contrast */
+        padding: 10px 0; /* Add padding for readability */
+        z-index: 1000; /* Ensure it's above other elements */
+
+    }
+    .info {
+        text-align: center;
+        margin-bottom: 20px;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    .tabs {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        position: relative; /* Relative positioning for the indicator */
+    }
+    .tab {
+        padding: 10px 20px;
+        cursor: pointer;
+        position: relative; /* Relative positioning for the indicator */
+        transition: color 0.3s ease; /* Smooth color transition */
+    }
+    .tab::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 3px; /* Height of the indicator */
+        background-color: #ffffff; /* Color of the indicator */
+        transition: width 0.3s ease; /* Smooth width transition */
+    }
+    .tab.active::before {
+        width: 100%;
+    }
+
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="info-header">
+            <h1 style="text-align: center">Welcome to LZFStudio Portfolio</h1>
+            <!-- Your content goes here -->
+            <hr>
+            <div class="tabs">
+                <div class="tab active" onclick="openTab('Abput', this);loadConent('about.html', 'css/about.css', 'js/about.js')">About</div>
+                <div class="tab" onclick="openTab('Technologies', this);loadConent('technologies.html', 'css/technologies.css')">Technologies</div>
+                <div class="tab" onclick="openTab('Clients', this);loadConent('clients.html', 'css/clients.css')">Clients</div>
+                <div class="tab" onclick="openTab('Contact Us', this);loadConent('contact.html', 'css/contact.css')">Contact Us</div>
+            </div>
+            <hr>
+        <div id="dynamic-content" style="padding-top: 10px; max-height: 100vh; overflow-y: auto;">Loading...</div>
+    </div>
+    <script>
+        function openTab(tabName, selectedTab) {
+            // Hide all content sections
+            var tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show the selected tab and its content
+            selectedTab.classList.add('active');
+        }
+
+        function loadConent(contentUrl, cssFile, jsFile) {
+            fetch(contentUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(html => {
+                    // Replace the content of the container with the fetched HTML
+                    const oldContentCss = document.getElementById('content-css');
+                    if (oldContentCss) {
+                        oldContentCss.remove();
+                    }
+                    if (cssFile) {
+                        addCSS(cssFile);
+                    }
+
+                    const oldContentJs = document.getElementById('content-js');
+                    if (oldContentJs) {
+                        oldContentJs.remove();
+                    }
+                    if (jsFile) {
+                        addJs(jsFile);
+                    }
+
+                    dynamicContent = document.getElementById('dynamic-content');
+                    dynamicContent.innerHTML = html;
+                    window.history.pushState('object or string', '', url);
+                })
+                .catch(error => {
+                    console.error('Error loading page:', error);
+                });
+        }
+
+        function addCSS(cssPath) {
+            var contentCss = document.createElement('link');
+            contentCss.rel = 'stylesheet';
+            contentCss.href = cssPath;
+            contentCss.id = 'content-css';
+            document.head.appendChild(contentCss);
+        }
+        
+        function addJs(jsFile) {
+            var script = document.createElement('script');
+            script.async = true;
+            script.id = 'content-js';
+            script.src = jsFile;
+            document.head.append(script);
+        }
+
+        // First page
+        loadConent('about.html', 'css/about.css', 'js/about.js')
+    </script>
+
+</body>
+</html>
