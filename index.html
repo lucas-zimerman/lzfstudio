@@ -120,7 +120,7 @@
 
                     dynamicContent = document.getElementById('dynamic-content');
                     dynamicContent.innerHTML = html;
-                    window.history.pushState('object or string', '', url);
+                    window.history.pushState('object or string', '', contentUrl);
                 })
                 .catch(error => {
                     console.error('Error loading page:', error);
