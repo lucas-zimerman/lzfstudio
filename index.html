@@ -8,14 +8,15 @@
     body {
         background-color: #333333; /* Deep charcoal color */
         color: #ffffff; /* White text for contrast */
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
+        font-family: 'ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji';
+        line-height: 1.75;
+        justify-content: center;
+        align-items: center;
     }
     .container {
-        max-width: 1200px;
+        width: 60%;
+        max-width: 800px;
         margin: 0 auto;
-        padding: 20px;
     }
     hr {
         border-color: red; /* Red color for the horizontal line */
@@ -31,10 +32,10 @@
 
     }
     .info {
-        text-align: center;
+        text-align: left;
         margin-bottom: 20px;
-        margin-left: 10%;
-        margin-right: 10%;
+        margin-left: 2vw;
+        margin-right: 2vw;
     }
     .tabs {
         display: flex;
@@ -78,8 +79,9 @@
                 <div class="tab" onclick="openTab('Contact Us', this);loadConent('contact.html', 'css/contact.css')">Contact Us</div>
             </div>
             <hr>
+        </div>
+        <div id="dynamic-content" style="padding-top: 10px;">Loading...</div>
     </div>
-    <div id="dynamic-content" style="padding-top: 10px;">Loading...</div>
     <script>
         function openTab(tabName, selectedTab) {
             // Hide all content sections

@@ -4,4 +4,5 @@ function getAge() {
 }
 
 // Set dynamic Age
-document.getElementById('devage').textContent = getAge();
+element = document.getElementById('devage');
+element.textContent = element.textContent.replace("{AGE}", getAge());
