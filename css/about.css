@@ -43,3 +43,34 @@ p {
     transform: translateY(-50%);
     animation: fly 16s linear infinite;
 }
+
+.cube {
+    position: absolute;
+    transform-style: preserve-3d;
+    animation: rotate 5s infinite linear;
+  }
+  
+  .face {
+    position: absolute;
+    width: 8vh;
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2vh;
+    color: white;
+    background-color: rgba(170, 18, 18, 0.5);
+  }
+  
+  .front { transform: translateZ(4vh); }
+  .back { transform: rotateY(180deg) translateZ(4vh); }
+  .left { transform: rotateY(-90deg) translateZ(4vh); }
+  .right { transform: rotateY(90deg) translateZ(4vh); }
+  .top { transform: rotateX(90deg) translateZ(4vh); }
+  .bottom { transform: rotateX(-90deg) translateZ(4vh); }
+  
+  @keyframes rotate {
+    from { transform: rotateX(0) rotateY(0); }
+    to { transform: rotateX(360deg) rotateY(360deg); }
+  }
+  

@@ -21,7 +21,7 @@
         border-color: red; /* Red color for the horizontal line */
     }
     .info-header {
-        position: fixed; /* Fix the position */
+        position: sticky; /* Fix the position */
         top: 0; /* Position at the top of the viewport */
         left: 0;
         right: 0;
@@ -78,8 +78,8 @@
                 <div class="tab" onclick="openTab('Contact Us', this);loadConent('contact.html', 'css/contact.css')">Contact Us</div>
             </div>
             <hr>
-        <div id="dynamic-content" style="padding-top: 10px; max-height: 100vh; overflow-y: auto;">Loading...</div>
     </div>
+    <div id="dynamic-content" style="padding-top: 10px;">Loading...</div>
     <script>
         function openTab(tabName, selectedTab) {
             // Hide all content sections
